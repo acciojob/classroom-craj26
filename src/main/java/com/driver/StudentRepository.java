@@ -1,10 +1,11 @@
 package com.driver;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 @Component
 @Repository
@@ -59,7 +60,7 @@ public class StudentRepository {
 
     public List<String> getAlllist() {
         List<String> studentList=new ArrayList<>();
-        for(String student:studentMap.keySet()) studentList.add(student);
+        for(String s:studentMap.keySet()) studentList.add(s);
         return  studentList;
 
     }
@@ -75,9 +76,23 @@ public class StudentRepository {
     }
 
     public void deleteAllteacher() {
-        for(String s:studnetTeacherMapping.keySet()){
-            deleteTeacherName(s);
+//        for(String s:studnetTeacherMapping.keySet()){
+//            deleteTeacherName(s);
+//        }
+        HashSet<String> delTeacher=new HashSet<>();
+        for(String t:techorMap.keySet()){
+            for(String s:studnetTeacherMapping.get(t)){
+                delTeacher.add(s);
+            }
         }
+        for(String s:delTeacher){
+            if(studentMap.containsKey(s)){
+                studentMap.remove(s);
+            }
+        }
+        studnetTeacherMapping.clear();
+        //stds.clear();
+        techorMap.clear();
     }
     ///
 
