@@ -30,7 +30,8 @@ public class StudentRepository {
     public void makePair(String student, String teacher) {
         if(studentMap.containsKey(student) && techorMap.containsKey(teacher)){
             //for new studnet only
-
+            studentMap.put(student,studentMap.get(student));
+            techorMap.put(teacher,techorMap.get(teacher));
             List<String>currentStudent=new ArrayList<>();
             if(studnetTeacherMapping.containsKey(teacher)){
                 currentStudent=studnetTeacherMapping.get(teacher);
