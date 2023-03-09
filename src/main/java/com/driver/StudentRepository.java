@@ -13,6 +13,12 @@ public class StudentRepository {
     private HashMap<String, Teacher> techorMap;
     private HashMap<String, List<String>> studnetTeacherMapping;
 
+    public StudentRepository() {
+        this.studentMap = new HashMap<>();
+        this.techorMap=new HashMap<>();
+        this.studnetTeacherMapping=new HashMap<>();
+    }
+
     public void saveStudent(Student student) {
         studentMap.put(student.getName(),student);
     }
