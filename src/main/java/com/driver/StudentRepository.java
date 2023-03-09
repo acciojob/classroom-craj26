@@ -1,11 +1,12 @@
 package com.driver;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Component
 @Repository
 public class StudentRepository {
     private HashMap<String, Student> studentMap;
@@ -42,14 +43,18 @@ public class StudentRepository {
     }
 
     public List<String> getlist(String teacher) {
-//        if(studnetTeacherMapping.containsKey(teacher)){
-//            return
-//        }
-        return studnetTeacherMapping.get(teacher);
+        List<String> empty=new ArrayList<>();
+        if(studnetTeacherMapping.containsKey(teacher)){
+            empty=studnetTeacherMapping.get(teacher);
+        }
+        return empty;
     }
 
     public List<String> getAlllist() {
-        return new ArrayList<>(studentMap.keySet());
+        List<String> studentList=new ArrayList<>();
+        for(String student:studentMap.keySet()) studentList.add(student);
+        return  studentList;
+
     }
 
     public void deleteTeacherName(String teacher) {
